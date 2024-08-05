@@ -13,8 +13,8 @@ function divide(num1, num2) {
 }
 
 // Operation variables
-let firstNum
-let secondNum
+let firstNum = 0;
+let secondNum = 0;
 let operator
 
 function operate(first, second, oper) {
@@ -31,8 +31,7 @@ function operate(first, second, oper) {
 
 function handleClick(event) {
     const clickedButtonContent = event.target.textContent;
-    console.log(clickedButtonContent);
-    return clickedButtonContent
+    onDisplay(clickedButtonContent);
 }
 
 function getNumber() {
@@ -40,9 +39,17 @@ function getNumber() {
     numButtons.forEach(button => button.addEventListener("click", handleClick))
 }
 
+function onDisplay(selectedNum) {
+    const displayDiv = document.querySelector(".display");
+    displayDiv.textContent = `${selectedNum}`;
+    //return displayDiv
+}
+
 function calculator() {
+    onDisplay(firstNum);
     firstNum = getNumber();
     return firstNum
 }
+
 
 calculator();
