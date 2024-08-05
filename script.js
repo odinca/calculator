@@ -28,3 +28,21 @@ function operate(first, second, oper) {
         if (op.type == oper) {return op.func(first, second)}
     };
 }
+
+function handleClick(event) {
+    const clickedButtonContent = event.target.textContent;
+    console.log(clickedButtonContent);
+    return clickedButtonContent
+}
+
+function getNumber() {
+    let numButtons = document.querySelectorAll(".number");
+    numButtons.forEach(button => button.addEventListener("click", handleClick))
+}
+
+function calculator() {
+    firstNum = getNumber();
+    return firstNum
+}
+
+calculator();
