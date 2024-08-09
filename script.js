@@ -31,44 +31,36 @@ function operate(first, second, oper) {
     };
 }
 
-function getNumber() {
-    let numButtons = document.querySelectorAll(".number");
-    numButtons.forEach(button => button.addEventListener("click", handleClick))
-}
-
-function handleClick(event) {
-    const clickedButtonContent = event.target.textContent;
-    onDisplay(clickedButtonContent);
-}
-
 function checkForCompOp(displayString) {
     return operators.some(op => displayString.includes(op.type));
 }
 
-function onDisplay(selectedNum) {
+function onDisplay(selectedBtn) {
     const displayDiv = document.querySelector(".display");
 
-    for (let op of operators) {
-        if (displayData.includes(op.type)) {
-            displayData += selectedNum.toString();
+    const preCompOp = "";
+    const postCompOp = "";
+    const compOp = "";
+
+    if (checkForCompOp(displayData)) {
+        displayData += selectedBtn.toString();
             secondNum = Number(displayData);
             displayDiv.textContent = displayData;
             console.log(checkForCompOp(displayData));
-            return
-        }
-        else {
-            displayData += selectedNum.toString();
-            firstNum = Number(displayData);
-            displayDiv.textContent = displayData;
-            console.log(firstNum);
-            console.log(checkForCompOp(displayData));
-            return
-        }
     }
-    //displayData += selectedNum.toString();
-    //displayDiv.textContent = displayData;
-    //firstNum = Number(displayData);
-    //console.log(firstNum);
+    else {
+        displayData += selectedBtn.toString();
+        firstNum = Number(displayData);
+        displayDiv.textContent = displayData;
+        console.log(firstNum);
+        console.log(checkForCompOp(displayData));
+    }
 }
+
+function getNumber() {
+    let numButtons = document.querySelectorAll(".number");
+    numButtons.forEach(button => button.addEventListener("click", (event) => onDisplay(event.target.textContent)));
+}
+
 
 getNumber();
