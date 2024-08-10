@@ -38,29 +38,26 @@ function checkForCompOp(displayString) {
 function onDisplay(selectedBtn) {
     const displayDiv = document.querySelector(".display");
 
-    const preCompOp = "";
-    const postCompOp = "";
-    const compOp = "";
-
     if (checkForCompOp(displayData)) {
         displayData += selectedBtn.toString();
-            secondNum = Number(displayData);
             displayDiv.textContent = displayData;
             console.log(checkForCompOp(displayData));
     }
     else {
         displayData += selectedBtn.toString();
-        firstNum = Number(displayData);
         displayDiv.textContent = displayData;
         console.log(firstNum);
         console.log(checkForCompOp(displayData));
     }
 }
 
-function getNumber() {
-    let numButtons = document.querySelectorAll(".number");
+function getButton() {
+    let numButtons = document.querySelectorAll("button");
     numButtons.forEach(button => button.addEventListener("click", (event) => onDisplay(event.target.textContent)));
 }
 
+function handleClick(event) {
+    
+}
 
-getNumber();
+getButton();
