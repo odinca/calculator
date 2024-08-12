@@ -35,6 +35,7 @@ function onDisplay(selectedBtn) {
     const displayDiv = document.querySelector(".display");
     if (selectedBtn == "clear") {
         displayData = "";
+        selectedOperator = "";
     }
     else {
         displayData += selectedBtn.toString();
