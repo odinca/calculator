@@ -23,35 +23,22 @@ const operators = [
 let firstNum = 0;
 let secondNum = 0;
 let displayData = "";
-let accNum;
-let currentOperator;
+let selectedOperator = "";
 
-function handleClick(event) {
-    currentOperator;
-    const clickedBtn = event.target.textContent;
-    if (clickedBtn === "=") {
-        secondNum = Number(accNum)
-        provideSum(firstNum, secondNum, operator); // This function will erase display and print the sum
-    }
-    else if (operators.some(op => clickedBtn === op)){
-        firstNum = Number(accNum);
-        currentOperator = clickedBtn;
-        accNum = 0;
-    }
-    else {
-        accNum += clickedBtn.toString();
-    }
-    onDisplay(clickedBtn);
-}
-
-function provideSum(first, second, oper) {
-    const result = operate(first, second, oper);
-    onDisplay(result);
+function provideSum() {
+    secondNum = Number(displayData.split(selectedOperator)[1]);
+    displayData = "";
+    onDisplay(operate(firstNum, secondNum, selectedOperator));
 }
 
 function onDisplay(selectedBtn) {
     const displayDiv = document.querySelector(".display");
-    displayData += selectedBtn.toString();
+    if (selectedBtn == "clear") {
+        displayData = "";
+    }
+    else {
+        displayData += selectedBtn.toString();
+    }
     displayDiv.textContent = displayData;
 }
 
@@ -61,31 +48,27 @@ function operate(first, second, oper) {
     };
 }
 
-function checkForCompOp(displayString) {
-    return operators.some(op => displayString.includes(op.type));
+function onOpClick(opToAdd) {
+    firstNum = Number(displayData);
+    onDisplay(opToAdd);
+    selectedOperator = opToAdd;
 }
 
-/* function onDisplay(selectedBtn) {
-    const displayDiv = document.querySelector(".display");
-
-    if (checkForCompOp(displayData)) {
-        displayData += selectedBtn.toString();
-            displayDiv.textContent = displayData;
-            console.log(checkForCompOp(displayData));
-    }
-    else {
-        displayData += selectedBtn.toString();
-        displayDiv.textContent = displayData;
-        console.log(firstNum);
-        console.log(checkForCompOp(displayData));
-    }
-} */
-
-function getButton() {
-    let numButtons = document.querySelectorAll("button");
-    numButtons.forEach(button => button.addEventListener("click", handleClick));
+function getNumButton() {
+    let numButtons = document.querySelectorAll("button.number");
+    numButtons.forEach(numButton => numButton.addEventListener("click", () => onDisplay(numButton.textContent)));
 }
 
+function getOperator() {
+    let opButtons = document.querySelectorAll(".operator");
+    opButtons.forEach(opButton => opButton.addEventListener("click", () => onOpClick(opButton.textContent)));
+}
 
+getNumButton();
+getOperator();
 
-getButton();
+const equals = document.querySelector("#equals");
+const clear = document.querySelector("#clear");
+
+equals.addEventListener("click", () => provideSum());
+clear.addEventListener("click", () => onDisplay("clear"));
