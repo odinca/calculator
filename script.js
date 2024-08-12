@@ -22,25 +22,31 @@ const operators = [
 // Operation variables
 let firstNum = 0;
 let secondNum = 0;
-let operator
 let displayData = "";
 let accNum;
+let currentOperator;
 
 function handleClick(event) {
+    currentOperator;
     const clickedBtn = event.target.textContent;
     if (clickedBtn === "=") {
         secondNum = Number(accNum)
-        provideSum(); // This function will erase display and print the sum
+        provideSum(firstNum, secondNum, operator); // This function will erase display and print the sum
     }
     else if (operators.some(op => clickedBtn === op)){
         firstNum = Number(accNum);
-        operator = clickedBtn;
+        currentOperator = clickedBtn;
         accNum = 0;
     }
     else {
         accNum += clickedBtn.toString();
     }
     onDisplay(clickedBtn);
+}
+
+function provideSum(first, second, oper) {
+    const result = operate(first, second, oper);
+    onDisplay(result);
 }
 
 function onDisplay(selectedBtn) {
