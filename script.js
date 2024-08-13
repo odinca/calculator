@@ -26,22 +26,37 @@ let displayData = "";
 let selectedOperator = "";
 
 function provideSum() {
-    secondNum = Number(displayData);
+// If user only clicks equals without clicking any numbers or operators. 
+    if (firstNum == 0 && secondNum == 0 && selectedOperator.length == 0 && displayData.length == 0) {
+        selectedOperator = "+";
+    }
+// If user types number and presses operator, but presses equals before selecting the second number
+    else if (selectedOperator.length == 0 && displayData.length > 0) {
+        firstNum = Number(displayData)
+        secondNum = 0;
+        selectedOperator = "+";
+    }
+    else {
+        secondNum = Number(displayData);
+    }
     displayData = "";
     onDisplay(operate(firstNum, secondNum, selectedOperator));
     selectedOperator = "";
 }
 
+const displayDiv = document.querySelector(".display");
+
 function onDisplay(selectedBtn) {
-    const displayDiv = document.querySelector(".display");
-    if (selectedBtn == "clear") {
-        displayData = "";
-        selectedOperator = "";
-    }
-    else {
-        displayData += selectedBtn.toString();
-    }
+    displayData += selectedBtn.toString();
     displayDiv.textContent = displayData;
+}
+
+function clearDisplay() {
+    displayDiv.textContent = 0;
+    displayData = "";
+    selectedOperator = "";
+    firstNum = 0;
+    secondNum = 0;
 }
 
 function operate(first, second, oper) {
@@ -79,4 +94,4 @@ const clear = document.querySelector("#clear");
 
 // Control what happens when equals or clear buttons are pressed
 equals.addEventListener("click", () => provideSum());
-clear.addEventListener("click", () => onDisplay("clear"));
+clear.addEventListener("click", () => clearDisplay());
