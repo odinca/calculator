@@ -71,7 +71,6 @@ function operate(first, second, oper) {
         return result.toFixed(3);
     }
     return result;
-
 }
 
 function onOpClick(opToAdd) {
