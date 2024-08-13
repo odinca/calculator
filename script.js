@@ -27,6 +27,7 @@ let firstNum = 0;
 let secondNum = 0;
 let displayData = "";
 let selectedOperator = "";
+let result;
 
 function provideSum() {
 // If user only clicks equals without clicking any numbers or operators. 
@@ -50,7 +51,12 @@ function provideSum() {
 const displayDiv = document.querySelector(".display");
 
 function onDisplay(selectedBtn) {
-    displayData += selectedBtn.toString();
+    if (!isNaN(selectedBtn) && result === Number(displayData)) {
+        displayData = selectedBtn;
+    }
+    else {
+        displayData += selectedBtn.toString();
+    }
     displayDiv.textContent = displayData;
 }
 
@@ -60,10 +66,10 @@ function clearDisplay() {
     selectedOperator = "";
     firstNum = 0;
     secondNum = 0;
+    result = undefined;
 }
 
 function operate(first, second, oper) {
-    let result;
     for (let op of operators) {
         if (op.type == oper) {result = op.func(first, second)}
     };
