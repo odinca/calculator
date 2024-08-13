@@ -60,9 +60,15 @@ function clearDisplay() {
 }
 
 function operate(first, second, oper) {
+    let result;
     for (let op of operators) {
-        if (op.type == oper) {return op.func(first, second)}
+        if (op.type == oper) {result = op.func(first, second)}
     };
+    if (typeof(result) == 'number' && !Number.isInteger(result)) {
+        return result.toFixed(3);
+    }
+    return result;
+
 }
 
 function onOpClick(opToAdd) {
