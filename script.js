@@ -99,13 +99,17 @@ function getOperator() {
     let opButtons = document.querySelectorAll(".operator");
     opButtons.forEach(opButton => opButton.addEventListener("click", () => onOpClick(opButton.textContent)));
 }
-
-getNumButton();
-getOperator();
-
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
+const decimal = document.querySelector("#decimal");
 
-// Control what happens when equals or clear buttons are pressed
+// Control what happens when a button is pressed
+getNumButton();
+getOperator();
 equals.addEventListener("click", () => provideSum());
 clear.addEventListener("click", () => clearDisplay());
+decimal.addEventListener("click", () => {
+    if (!displayData.includes(".")) {
+        onDisplay(decimal.textContent)
+    }
+});
