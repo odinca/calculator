@@ -18,14 +18,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 80px;
     border: 2px solid;
     border-radius: 20px;
     width: 700px;
     background-color: rgb(245, 245, 234);
 }
 
-#clear-container {
+#top-row {
     justify-content: end;
+}
+
+#clear,
+#undo  {
+    width: 83px;
+    height: auto;
+    margin-right: 91px;
+    font-size: 30px;
+}
+
+#undo {
+    margin-right: 60px;
 }
 
 button {
