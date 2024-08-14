@@ -11,7 +11,7 @@
     font-family: 'Courier New', Courier, monospace;
     margin: 40px 20px 20px 20px;
     border-radius: 10px;
-    width: 600px;
+    width: 400px;
 }
 
 .calc-base {
@@ -21,7 +21,7 @@
     margin-top: 80px;
     border: 2px solid;
     border-radius: 20px;
-    width: 700px;
+    width: 500px;
     background-color: rgb(245, 245, 234);
 }
 
