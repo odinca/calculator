@@ -51,7 +51,10 @@ function provideSum() {
 const displayDiv = document.querySelector(".display");
 
 function onDisplay(selectedBtn) {
-    if (!isNaN(selectedBtn) && result === Number(displayData)) {
+    if (selectedBtn == "undo") {
+        displayData = displayData.slice(0, -1);
+    }
+    else if (!isNaN(selectedBtn) && result === Number(displayData)) {
         displayData = selectedBtn;
     }
     else {
@@ -102,6 +105,7 @@ function getOperator() {
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 const decimal = document.querySelector("#decimal");
+const undo = document.querySelector("#undo");
 
 // Control what happens when a button is pressed
 getNumButton();
@@ -113,3 +117,11 @@ decimal.addEventListener("click", () => {
         onDisplay(decimal.textContent)
     }
 });
+undo.addEventListener("click", () => {
+    if (displayData.length > 1) {
+        onDisplay("undo");
+    }
+    else {displayDiv.textContent = 0;
+        displayData = "";
+    }
+})
