@@ -77,7 +77,8 @@ function operate(first, second, oper) {
         if (op.type == oper) {result = op.func(first, second)}
     };
     if (typeof(result) == 'number' && !Number.isInteger(result)) {
-        return result.toFixed(3);
+        result = result.toFixed(3);
+        result = parseFloat(result); //Remove trailing zeros
     }
     return result;
 }
